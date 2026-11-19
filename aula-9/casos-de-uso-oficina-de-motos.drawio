@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-19T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="uc-oficina" name="Casos de uso">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="Sistema de Gestão da Oficina de Motos" style="swimlane;html=1;startSize=52;horizontal=1;rounded=0;container=0;collapsible=0;strokeColor=#34476A;strokeWidth=2;fillColor=#EDF2FA;swimlaneFillColor=#FFFFFF;fontColor=#243653;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="320" y="100" width="900" height="670" as="geometry" />
+        </mxCell>
+        <mxCell id="cliente" value="Cliente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#243653;strokeWidth=2;fontColor=#243653;fontSize=17;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="100" y="325" width="60" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="atendente" value="Atendente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#243653;strokeWidth=2;fontColor=#243653;fontSize=17;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="225" width="60" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pagamentos" value="Sistema de&lt;br&gt;Pagamentos" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FFFFFF;strokeColor=#243653;strokeWidth=2;fontColor=#243653;fontSize=17;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="545" width="60" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitar" value="Solicitar serviço" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F5F8FF;strokeColor=#315487;strokeWidth=2;fontColor=#182F50;fontSize=17;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="450" y="175" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="consultar" value="Consultar andamento" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F5F8FF;strokeColor=#315487;strokeWidth=2;fontColor=#182F50;fontSize=17;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="450" y="350" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pagar" value="Pagar serviço" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F5F8FF;strokeColor=#315487;strokeWidth=2;fontColor=#182F50;fontSize=17;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="450" y="530" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="registrar" value="Registrar ordem de serviço" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F5F8FF;strokeColor=#315487;strokeWidth=2;fontColor=#182F50;fontSize=17;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="865" y="245" width="275" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="atualizar" value="Atualizar andamento" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#F5F8FF;strokeColor=#315487;strokeWidth=2;fontColor=#182F50;fontSize=17;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="865" y="430" width="275" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="association_1" value="" style="html=1;endArrow=none;startArrow=none;strokeColor=#445675;strokeWidth=2;" edge="1" parent="1" source="cliente" target="solicitar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="association_2" value="" style="html=1;endArrow=none;startArrow=none;strokeColor=#445675;strokeWidth=2;" edge="1" parent="1" source="cliente" target="consultar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="association_3" value="" style="html=1;endArrow=none;startArrow=none;strokeColor=#445675;strokeWidth=2;" edge="1" parent="1" source="cliente" target="pagar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="association_4" value="" style="html=1;endArrow=none;startArrow=none;strokeColor=#445675;strokeWidth=2;" edge="1" parent="1" source="atendente" target="registrar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="association_5" value="" style="html=1;endArrow=none;startArrow=none;strokeColor=#445675;strokeWidth=2;" edge="1" parent="1" source="atendente" target="atualizar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="association_6" value="" style="html=1;endArrow=none;startArrow=none;strokeColor=#445675;strokeWidth=2;" edge="1" parent="1" source="pagamentos" target="pagar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
