@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="24.7.17" type="device">
+  <diagram id="kinetiq-casos-de-uso" name="Casos de uso">
+    <mxGraphModel dx="1540" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1540" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="Sistema Kinetiq" style="swimlane;html=1;startSize=55;horizontal=1;rounded=0;container=0;collapsible=0;strokeColor=#34476A;strokeWidth=2;fillColor=#E9F0F9;swimlaneFillColor=#FFFFFF;fontColor=#243653;fontSize=23;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="60" width="930" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="main0" value="Medir amplitude de movimento" style="ellipse;html=1;whiteSpace=wrap;fillColor=#EAF2FF;strokeColor=#315487;strokeWidth=2.5;fontColor=#182F50;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="345" y="190" width="480" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="main1" value="Consultar evolução das sessões" style="ellipse;html=1;whiteSpace=wrap;fillColor=#EAF2FF;strokeColor=#315487;strokeWidth=2.5;fontColor=#182F50;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="345" y="545" width="480" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="sub0" value="Capturar movimento" style="ellipse;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#6981A8;strokeWidth=2;fontColor=#243653;fontSize=17;align=center;" vertex="1" parent="1">
+          <mxGeometry x="900" y="125" width="275" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="sub1" value="Registrar medida validada" style="ellipse;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#6981A8;strokeWidth=2;fontColor=#243653;fontSize=17;align=center;" vertex="1" parent="1">
+          <mxGeometry x="900" y="300" width="275" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="sub2" value="Consultar histórico de sessões" style="ellipse;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#6981A8;strokeWidth=2;fontColor=#243653;fontSize=17;align=center;" vertex="1" parent="1">
+          <mxGeometry x="900" y="480" width="275" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="sub3" value="Exibir resultados por data" style="ellipse;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#6981A8;strokeWidth=2;fontColor=#243653;fontSize=17;align=center;" vertex="1" parent="1">
+          <mxGeometry x="900" y="655" width="275" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="inc00" value="«include»" style="html=1;dashed=1;dashPattern=6 4;endArrow=open;endFill=0;strokeColor=#315487;strokeWidth=1.7;fontSize=16;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="main0" target="sub0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc01" value="«include»" style="html=1;dashed=1;dashPattern=6 4;endArrow=open;endFill=0;strokeColor=#315487;strokeWidth=1.7;fontSize=16;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="main0" target="sub1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc10" value="«include»" style="html=1;dashed=1;dashPattern=6 4;endArrow=open;endFill=0;strokeColor=#315487;strokeWidth=1.7;fontSize=16;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="main1" target="sub2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inc11" value="«include»" style="html=1;dashed=1;dashPattern=6 4;endArrow=open;endFill=0;strokeColor=#315487;strokeWidth=1.7;fontSize=16;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="main1" target="sub3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" value="Fisioterapeuta" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFFFFF;strokeColor=#243653;strokeWidth=2;fontColor=#243653;fontSize=18;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="88" y="184" width="64" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_p1" value="" style="html=1;endArrow=none;strokeColor=#526482;strokeWidth=2;" edge="1" parent="1" source="p1" target="main0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" value="Paciente" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFFFFF;strokeColor=#243653;strokeWidth=2;fontColor=#243653;fontSize=18;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="88" y="539" width="64" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_p2" value="" style="html=1;endArrow=none;strokeColor=#526482;strokeWidth=2;" edge="1" parent="1" source="p2" target="main1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="device" value="Câmera" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fillColor=#FFFFFF;strokeColor=#243653;strokeWidth=2;fontColor=#243653;fontSize=18;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1328" y="139" width="64" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="actor_device" value="" style="html=1;endArrow=none;strokeColor=#526482;strokeWidth=2;" edge="1" parent="1" source="device" target="sub0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
