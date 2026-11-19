@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_Oficina" targetNamespace="https://example.org/elicitação/aula-8" exporter="ChatGPT Work" exporterVersion="1.0">
+  <bpmn:collaboration id="Collaboration_Oficina">
+    <bpmn:participant id="Cliente" name="Cliente" />
+    <bpmn:participant id="Oficina" name="Oficina de motos" processRef="Process_Oficina" />
+    <bpmn:messageFlow id="m1" name="Solicitação" sourceRef="Cliente" targetRef="start" />
+    <bpmn:messageFlow id="m2" name="Orçamento" sourceRef="send" targetRef="Cliente" />
+    <bpmn:messageFlow id="m3" name="Resposta" sourceRef="Cliente" targetRef="reply" />
+    <bpmn:messageFlow id="m4" name="Conclusão" sourceRef="notify" targetRef="Cliente" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Oficina" name="Atender revisão de motocicleta" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_Oficina">
+      <bpmn:lane id="Lane_Atendente" name="Atendente">
+        <bpmn:flowNodeRef>start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>open</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>send</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>reply</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>decision</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>reject</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>end_reject</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>parts</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>notify</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>end_done</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Mecanico" name="Mecânico">
+        <bpmn:flowNodeRef>diagnose</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>split</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>bench</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>join</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>work</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="start" name="Solicitação recebida">
+      <bpmn:messageEventDefinition id="start_message" />
+      <bpmn:outgoing>f1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="open" name="Abrir ordem de serviço">
+      <bpmn:incoming>f1</bpmn:incoming>
+      <bpmn:outgoing>f2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="diagnose" name="Diagnosticar moto">
+      <bpmn:incoming>f2</bpmn:incoming>
+      <bpmn:outgoing>f3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sendTask id="send" name="Enviar orçamento">
+      <bpmn:incoming>f3</bpmn:incoming>
+      <bpmn:outgoing>f4</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:intermediateCatchEvent id="reply" name="Resposta recebida">
+      <bpmn:messageEventDefinition id="reply_message" />
+      <bpmn:incoming>f4</bpmn:incoming>
+      <bpmn:outgoing>f5</bpmn:outgoing>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:exclusiveGateway id="decision" name="Orçamento aprovado?" default="f_no" gatewayDirection="Diverging">
+      <bpmn:incoming>f5</bpmn:incoming>
+      <bpmn:outgoing>f_no</bpmn:outgoing>
+      <bpmn:outgoing>f_yes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="reject" name="Registrar recusa">
+      <bpmn:incoming>f_no</bpmn:incoming>
+      <bpmn:outgoing>f6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="end_reject" name="OS encerrada">
+      <bpmn:incoming>f6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:parallelGateway id="split" name="Preparar execução" gatewayDirection="Diverging">
+      <bpmn:incoming>f_yes</bpmn:incoming>
+      <bpmn:outgoing>f7</bpmn:outgoing>
+      <bpmn:outgoing>f8</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="parts" name="Separar peças">
+      <bpmn:incoming>f7</bpmn:incoming>
+      <bpmn:outgoing>f9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="bench" name="Preparar bancada">
+      <bpmn:incoming>f8</bpmn:incoming>
+      <bpmn:outgoing>f10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="join" name="Preparação concluída" gatewayDirection="Converging">
+      <bpmn:incoming>f9</bpmn:incoming>
+      <bpmn:incoming>f10</bpmn:incoming>
+      <bpmn:outgoing>f11</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="work" name="Executar revisão">
+      <bpmn:incoming>f11</bpmn:incoming>
+      <bpmn:outgoing>f12</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sendTask id="notify" name="Avisar cliente">
+      <bpmn:incoming>f12</bpmn:incoming>
+      <bpmn:outgoing>f13</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="end_done" name="Moto pronta">
+      <bpmn:incoming>f13</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="f1" sourceRef="start" targetRef="open" />
+    <bpmn:sequenceFlow id="f2" sourceRef="open" targetRef="diagnose" />
+    <bpmn:sequenceFlow id="f3" sourceRef="diagnose" targetRef="send" />
+    <bpmn:sequenceFlow id="f4" sourceRef="send" targetRef="reply" />
+    <bpmn:sequenceFlow id="f5" sourceRef="reply" targetRef="decision" />
+    <bpmn:sequenceFlow id="f_no" sourceRef="decision" targetRef="reject" />
+    <bpmn:sequenceFlow id="f6" sourceRef="reject" targetRef="end_reject" />
+    <bpmn:sequenceFlow id="f_yes" sourceRef="decision" targetRef="split">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${orcamentoAprovado}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f7" sourceRef="split" targetRef="parts" />
+    <bpmn:sequenceFlow id="f8" sourceRef="split" targetRef="bench" />
+    <bpmn:sequenceFlow id="f9" sourceRef="parts" targetRef="join" />
+    <bpmn:sequenceFlow id="f10" sourceRef="bench" targetRef="join" />
+    <bpmn:sequenceFlow id="f11" sourceRef="join" targetRef="work" />
+    <bpmn:sequenceFlow id="f12" sourceRef="work" targetRef="notify" />
+    <bpmn:sequenceFlow id="f13" sourceRef="notify" targetRef="end_done" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_Oficina">
+    <bpmndi:BPMNPlane id="Plane_Oficina" bpmnElement="Collaboration_Oficina">
+      <bpmndi:BPMNShape id="Shape_Cliente" bpmnElement="Cliente" isHorizontal="false">
+        <dc:Bounds x="80" y="50" width="2270" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Oficina" bpmnElement="Oficina" isHorizontal="true">
+        <dc:Bounds x="80" y="220" width="2270" height="630" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Lane_Atendente" bpmnElement="Lane_Atendente" isHorizontal="true">
+        <dc:Bounds x="110" y="220" width="2240" height="315" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Lane_Mecanico" bpmnElement="Lane_Mecanico" isHorizontal="true">
+        <dc:Bounds x="110" y="535" width="2240" height="315" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_start" bpmnElement="start">
+        <dc:Bounds x="217" y="357" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_open" bpmnElement="open">
+        <dc:Bounds x="340" y="330" width="160" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_diagnose" bpmnElement="diagnose">
+        <dc:Bounds x="560" y="640" width="180" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_send" bpmnElement="send">
+        <dc:Bounds x="800" y="330" width="190" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_reply" bpmnElement="reply">
+        <dc:Bounds x="1042" y="357" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_decision" bpmnElement="decision">
+        <dc:Bounds x="1145" y="350" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_reject" bpmnElement="reject">
+        <dc:Bounds x="1290" y="250" width="175" height="85" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_end_reject" bpmnElement="end_reject">
+        <dc:Bounds x="1512" y="274" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_split" bpmnElement="split">
+        <dc:Bounds x="1275" y="620" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_parts" bpmnElement="parts">
+        <dc:Bounds x="1450" y="400" width="180" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_bench" bpmnElement="bench">
+        <dc:Bounds x="1450" y="655" width="180" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_join" bpmnElement="join">
+        <dc:Bounds x="1665" y="620" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_work" bpmnElement="work">
+        <dc:Bounds x="1790" y="655" width="180" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_notify" bpmnElement="notify">
+        <dc:Bounds x="2020" y="330" width="180" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_end_done" bpmnElement="end_done">
+        <dc:Bounds x="2232" y="357" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Edge_f1" bpmnElement="f1">
+        <di:waypoint x="253" y="375" />
+        <di:waypoint x="340" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f2" bpmnElement="f2">
+        <di:waypoint x="500" y="375" />
+        <di:waypoint x="530" y="375" />
+        <di:waypoint x="530" y="685" />
+        <di:waypoint x="560" y="685" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f3" bpmnElement="f3">
+        <di:waypoint x="740" y="685" />
+        <di:waypoint x="770" y="685" />
+        <di:waypoint x="770" y="375" />
+        <di:waypoint x="800" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f4" bpmnElement="f4">
+        <di:waypoint x="990" y="375" />
+        <di:waypoint x="1042" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f5" bpmnElement="f5">
+        <di:waypoint x="1078" y="375" />
+        <di:waypoint x="1145" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f_no" bpmnElement="f_no">
+        <di:waypoint x="1170" y="350" />
+        <di:waypoint x="1170" y="292" />
+        <di:waypoint x="1290" y="292" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f6" bpmnElement="f6">
+        <di:waypoint x="1465" y="292" />
+        <di:waypoint x="1512" y="292" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f_yes" bpmnElement="f_yes">
+        <di:waypoint x="1195" y="375" />
+        <di:waypoint x="1220" y="375" />
+        <di:waypoint x="1220" y="645" />
+        <di:waypoint x="1275" y="645" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f7" bpmnElement="f7">
+        <di:waypoint x="1325" y="645" />
+        <di:waypoint x="1390" y="645" />
+        <di:waypoint x="1390" y="445" />
+        <di:waypoint x="1450" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f8" bpmnElement="f8">
+        <di:waypoint x="1325" y="645" />
+        <di:waypoint x="1400" y="645" />
+        <di:waypoint x="1400" y="700" />
+        <di:waypoint x="1450" y="700" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f9" bpmnElement="f9">
+        <di:waypoint x="1630" y="445" />
+        <di:waypoint x="1690" y="445" />
+        <di:waypoint x="1690" y="620" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f10" bpmnElement="f10">
+        <di:waypoint x="1630" y="700" />
+        <di:waypoint x="1650" y="700" />
+        <di:waypoint x="1650" y="645" />
+        <di:waypoint x="1665" y="645" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f11" bpmnElement="f11">
+        <di:waypoint x="1715" y="645" />
+        <di:waypoint x="1750" y="645" />
+        <di:waypoint x="1750" y="700" />
+        <di:waypoint x="1790" y="700" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f12" bpmnElement="f12">
+        <di:waypoint x="1970" y="700" />
+        <di:waypoint x="1995" y="700" />
+        <di:waypoint x="1995" y="375" />
+        <di:waypoint x="2020" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_f13" bpmnElement="f13">
+        <di:waypoint x="2200" y="375" />
+        <di:waypoint x="2232" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_m1" bpmnElement="m1">
+        <di:waypoint x="235" y="170" />
+        <di:waypoint x="235" y="357" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_m2" bpmnElement="m2">
+        <di:waypoint x="895" y="330" />
+        <di:waypoint x="895" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_m3" bpmnElement="m3">
+        <di:waypoint x="1060" y="170" />
+        <di:waypoint x="1060" y="357" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_m4" bpmnElement="m4">
+        <di:waypoint x="2110" y="330" />
+        <di:waypoint x="2110" y="170" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

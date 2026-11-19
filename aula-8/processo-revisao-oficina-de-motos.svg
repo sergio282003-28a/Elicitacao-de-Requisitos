@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="950" viewBox="0 0 2500 950" role="img" aria-label="Processo BPMN de revisão em oficina de motos"><defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#34445e"/></marker>
+<marker id="openArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#34445e" stroke-width="1.4"/></marker>
+<marker id="circleStart" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8"><circle cx="5" cy="5" r="3.5" fill="white" stroke="#34445e"/></marker>
+</defs><style>text{font-family:Arial,DejaVu Sans,sans-serif;fill:#24304b} .title{font-size:30px;font-weight:700} .subtitle{font-size:18px;fill:#5f6e83} .lane{font-size:19px;font-weight:700} .task{font-size:17px;font-weight:600} .event{font-size:15px;font-weight:600} .gateway{font-size:15px;font-weight:600} .edge{fill:none;stroke:#34445e;stroke-width:2.5;marker-end:url(#arrow)} .message{fill:none;stroke:#34445e;stroke-width:2.3;stroke-dasharray:8 7;marker-start:url(#circleStart);marker-end:url(#openArrow)} .msglabel{font-size:14px;fill:#435979}</style>
+<rect width="2500" height="950" fill="#f7f9fc"/><text x="80" y="34" class="title">BPMN | Revisão em oficina de motos</text>
+<rect x="80" y="50" width="2270" height="120" rx="5" fill="#eef4fa" stroke="#34445e" stroke-width="2"/><line x1="110" y1="50" x2="110" y2="170" stroke="#34445e" stroke-width="2"/>
+<text transform="translate(102 136) rotate(-90)" class="lane">Cliente</text><text x="190" y="121" class="subtitle">Piscina externa sem detalhamento interno</text>
+<rect x="80" y="220" width="2270" height="630" rx="5" fill="white" stroke="#34445e" stroke-width="2"/><line x1="110" y1="220" x2="110" y2="850" stroke="#34445e" stroke-width="2"/>
+<text transform="translate(102 632) rotate(-90)" class="lane">Oficina de motos</text>
+<line x1="110" y1="535" x2="2350" y2="535" stroke="#34445e" stroke-width="2"/><text transform="translate(136 439) rotate(-90)" class="lane">Atendente</text><text transform="translate(136 761) rotate(-90)" class="lane">Mecânico</text>
+
+<circle cx="235.0" cy="375.0" r="18" fill="white" stroke="#34445e" stroke-width="2.6"/>
+<path d="M225.0 368.0h20v14h-20z M225.0 368.0l10 8 10-8" fill="none" stroke="#34445e" stroke-width="1.3"/>
+<text x="235.0" y="416" text-anchor="middle" class="event">Solicitação recebida</text>
+<rect x="340" y="330" width="160" height="90" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<text x="420.0" y="365.0" text-anchor="middle" dominant-baseline="central" class="task">Abrir ordem de</text>
+<text x="420.0" y="385.0" text-anchor="middle" dominant-baseline="central" class="task">serviço</text>
+<rect x="560" y="640" width="180" height="90" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<text x="650.0" y="685.0" text-anchor="middle" dominant-baseline="central" class="task">Diagnosticar moto</text>
+<rect x="800" y="330" width="190" height="90" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<path d="M815 348h24v16h-24z M815 348l12 9 12-9" fill="none" stroke="#34445e" stroke-width="1.5"/>
+<text x="895.0" y="375.0" text-anchor="middle" dominant-baseline="central" class="task">Enviar orçamento</text>
+<circle cx="1060.0" cy="375.0" r="18" fill="white" stroke="#34445e" stroke-width="2.6"/>
+<circle cx="1060.0" cy="375.0" r="14" fill="none" stroke="#34445e" stroke-width="1.2"/>
+<path d="M1050.0 368.0h20v14h-20z M1050.0 368.0l10 8 10-8" fill="none" stroke="#34445e" stroke-width="1.3"/>
+<text x="1060.0" y="416" text-anchor="middle" class="event">Resposta recebida</text>
+<path d="M1170.0 350 L1195 375.0 L1170.0 400 L1145 375.0 Z" fill="white" stroke="#34445e" stroke-width="2.5"/>
+<path d="M1160.0 365.0l20 20 M1180.0 365.0l-20 20" stroke="#34445e" stroke-width="3.5"/>
+<text x="1170.0" y="337" text-anchor="middle" class="gateway">Orçamento aprovado?</text>
+<rect x="1290" y="250" width="175" height="85" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<text x="1377.5" y="292.5" text-anchor="middle" dominant-baseline="central" class="task">Registrar recusa</text>
+<circle cx="1530.0" cy="292.0" r="18" fill="white" stroke="#34445e" stroke-width="5"/>
+<text x="1530.0" y="333" text-anchor="middle" class="event">OS encerrada</text>
+<path d="M1300.0 620 L1325 645.0 L1300.0 670 L1275 645.0 Z" fill="white" stroke="#34445e" stroke-width="2.5"/>
+<path d="M1287.0 645.0h26 M1300.0 632.0v26" stroke="#34445e" stroke-width="3.5"/>
+<text x="1300.0" y="690" text-anchor="middle" class="gateway">Preparar execução</text>
+<rect x="1450" y="400" width="180" height="90" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<text x="1540.0" y="445.0" text-anchor="middle" dominant-baseline="central" class="task">Separar peças</text>
+<rect x="1450" y="655" width="180" height="90" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<text x="1540.0" y="700.0" text-anchor="middle" dominant-baseline="central" class="task">Preparar bancada</text>
+<path d="M1690.0 620 L1715 645.0 L1690.0 670 L1665 645.0 Z" fill="white" stroke="#34445e" stroke-width="2.5"/>
+<path d="M1677.0 645.0h26 M1690.0 632.0v26" stroke="#34445e" stroke-width="3.5"/>
+<text x="1690.0" y="690" text-anchor="middle" class="gateway">Preparação concluída</text>
+<rect x="1790" y="655" width="180" height="90" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<text x="1880.0" y="700.0" text-anchor="middle" dominant-baseline="central" class="task">Executar revisão</text>
+<rect x="2020" y="330" width="180" height="90" rx="12" fill="#fff" stroke="#34445e" stroke-width="2.5"/>
+<path d="M2035 348h24v16h-24z M2035 348l12 9 12-9" fill="none" stroke="#34445e" stroke-width="1.5"/>
+<text x="2110.0" y="375.0" text-anchor="middle" dominant-baseline="central" class="task">Avisar cliente</text>
+<circle cx="2250.0" cy="375.0" r="18" fill="white" stroke="#34445e" stroke-width="5"/>
+<text x="2250.0" y="416" text-anchor="middle" class="event">Moto pronta</text>
+<polyline points="253,375 340,375" class="edge"/>
+<polyline points="500,375 530,375 530,685 560,685" class="edge"/>
+<polyline points="740,685 770,685 770,375 800,375" class="edge"/>
+<polyline points="990,375 1042,375" class="edge"/>
+<polyline points="1078,375 1145,375" class="edge"/>
+<polyline points="1170,350 1170,292 1290,292" class="edge"/>
+<text x="1204" y="276" class="gateway">Não</text>
+<polyline points="1465,292 1512,292" class="edge"/>
+<polyline points="1195,375 1220,375 1220,645 1275,645" class="edge"/>
+<text x="1212" y="520" class="gateway">Sim</text>
+<polyline points="1325,645 1390,645 1390,445 1450,445" class="edge"/>
+<polyline points="1325,645 1400,645 1400,700 1450,700" class="edge"/>
+<polyline points="1630,445 1690,445 1690,620" class="edge"/>
+<polyline points="1630,700 1650,700 1650,645 1665,645" class="edge"/>
+<polyline points="1715,645 1750,645 1750,700 1790,700" class="edge"/>
+<polyline points="1970,700 1995,700 1995,375 2020,375" class="edge"/>
+<polyline points="2200,375 2232,375" class="edge"/>
+<polyline points="235,170 235,357" class="message"/>
+<text x="243" y="197" text-anchor="middle" class="msglabel">Solicitação</text>
+<polyline points="895,330 895,170" class="message"/>
+<text x="903" y="197" text-anchor="middle" class="msglabel">Orçamento</text>
+<polyline points="1060,170 1060,357" class="message"/>
+<text x="1068" y="197" text-anchor="middle" class="msglabel">Resposta</text>
+<polyline points="2110,330 2110,170" class="message"/>
+<text x="2118" y="197" text-anchor="middle" class="msglabel">Conclusão</text>
+</svg>
